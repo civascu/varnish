@@ -17,7 +17,8 @@ MEMLOCK=<%= node['varnish']['memlock'] %>
 # the -n switch, to have more instances on a single server.
 INSTANCE=<%= node['varnish']['instance'] %>
 
-
+#Expose the VCL Conf as Env Variable to enable configtest to work
+VARNISH_VCL_CONF=<%= node['varnish']['dir'] %>/<%= node['varnish']['vcl_conf'] %>
 
 # Pass the Daemon options
 
