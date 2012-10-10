@@ -35,6 +35,13 @@ template node['varnish']['default'] do
   notifies :restart, "service[varnish]"
 end
 
+# This next section ensures that the directory for varnish storage is created
+# Merged commit from https://github.com/willthames/cookbooks/blob/c0c1bd60e11702cc2050e4f4797a69baeb9c10b1/varnish/attributes/default.rb
+directory "/var/lib/varnish/#{node[:fqdn]}" do
+  owner "root"
+  group "root"
+end
+
 service "varnish" do
   supports :restart => true, :reload => true
   action [ :enable, :start ]
